@@ -24,9 +24,8 @@ func GetTodaysEvents() {
 	doc.Find(".otd-detail").Each(func(_ int, eventList *goquery.Selection) {
 		eventList.Find(".otd-title").Each(func(idx int, event *goquery.Selection) {
 			txt := event.Text()
+			// filter the text with the unwanted words
 			fmt.Printf("Event %d: %s\n\n", idx+1, txt)
 		})
-
 	})
-
 }
