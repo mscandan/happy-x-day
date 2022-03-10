@@ -2,6 +2,7 @@ package scraping
 
 import (
 	"fmt"
+	"happy-x-day/utils"
 	"net/http"
 
 	"github.com/PuerkitoBio/goquery"
@@ -21,11 +22,18 @@ func GetTodaysEvents() {
 		panic(err)
 	}
 
+	allEvents := []string{}
+
 	doc.Find(".otd-detail").Each(func(_ int, eventList *goquery.Selection) {
-		eventList.Find(".otd-title").Each(func(idx int, event *goquery.Selection) {
+		eventList.Find(".otd-title").Each(func(_ int, event *goquery.Selection) {
 			txt := event.Text()
-			// filter the text with the unwanted words
-			fmt.Printf("Event %d: %s\n\n", idx+1, txt)
+			allEvents = append(allEvents, txt)
 		})
 	})
+
+	filteredEvents := utils.FilterNegativeEvents(allEvents)
+
+	for _, event := range filteredEvents {
+		fmt.Println(event)
+	}
 }
