@@ -1,7 +1,6 @@
 package scraping
 
 import (
-	"fmt"
 	"happy-x-day/utils"
 	"net/http"
 
@@ -10,7 +9,7 @@ import (
 
 var URL_TO_SCRAPE = "https://www.timeanddate.com/on-this-day/"
 
-func GetTodaysEvents() {
+func GetTodaysEvents() []string {
 	res, err := http.Get(URL_TO_SCRAPE)
 	if err != nil {
 		panic(err)
@@ -33,7 +32,5 @@ func GetTodaysEvents() {
 
 	filteredEvents := utils.FilterNegativeEvents(allEvents)
 
-	for _, event := range filteredEvents {
-		fmt.Println(event)
-	}
+	return filteredEvents
 }

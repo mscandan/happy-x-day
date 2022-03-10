@@ -7,5 +7,9 @@ import (
 
 func main() {
 	fmt.Println("hello")
-	scraping.GetTodaysEvents()
+	events := scraping.GetTodaysEvents()
+
+	for _, event := range events {
+		fmt.Println(event)
+	}
 }
