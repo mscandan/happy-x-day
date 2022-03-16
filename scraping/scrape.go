@@ -1,7 +1,6 @@
 package scraping
 
 import (
-	"fmt"
 	"happy-x-day/utils"
 	"net/http"
 
@@ -53,7 +52,6 @@ func GetAdvancedScrapingEvents() []string {
 
 	doc.Find(".event").Each(func(_ int, event *goquery.Selection) {
 		txt := event.Text()
-		fmt.Println(txt)
 		allEvents = append(allEvents, txt)
 	})
 

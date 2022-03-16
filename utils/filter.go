@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"strings"
+	"regexp"
 )
 
 var NegativeSentences = []string{
@@ -25,6 +25,16 @@ var NegativeSentences = []string{
 	"accident",
 	"kill",
 	"massacre",
+	"nuclear",
+	"fire",
+	"military",
+	"violation",
+	"raid",
+	"dead",
+	"terror",
+	"beat",
+	"battle",
+	"poison",
 }
 
 func FilterNegativeEvents(events []string) []string {
@@ -33,7 +43,9 @@ func FilterNegativeEvents(events []string) []string {
 	for _, event := range events {
 		isAllGood := true
 		for _, negativeWord := range NegativeSentences {
-			if strings.Contains(event, negativeWord) {
+			searchRegex := "(?i)" + negativeWord
+			r := regexp.MustCompile(searchRegex)
+			if r.MatchString(event) {
 				isAllGood = false
 			}
 		}

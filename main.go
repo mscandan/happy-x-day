@@ -7,13 +7,16 @@ import (
 
 func main() {
 	fmt.Println("hello")
-	events := scraping.GetBasicScrapingEvents()
+	basicEvents := scraping.GetBasicScrapingEvents()
+	advancedEvents := scraping.GetAdvancedScrapingEvents()
 
-	if len(events) < 3 {
-		events = append(events, scraping.GetAdvancedScrapingEvents()...)
+	fmt.Printf("Basic Scraping Found %d Events \n", len(basicEvents))
+	for _, event := range basicEvents {
+		fmt.Println(event)
 	}
 
-	for _, event := range events {
+	fmt.Printf("Advanced Scraping Found %d Events \n", len(advancedEvents))
+	for _, event := range advancedEvents {
 		fmt.Println(event)
 	}
 }
