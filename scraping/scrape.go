@@ -7,8 +7,10 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-var BASIC_SCRAPE_URL = "https://www.timeanddate.com/on-this-day/"
-var ADVANCED_SCRAPE_URL = "https://www.onthisday.com/today/events.php"
+const (
+	BASIC_SCRAPE_URL    = "https://www.timeanddate.com/on-this-day/"
+	ADVANCED_SCRAPE_URL = "https://www.onthisday.com/today/events.php"
+)
 
 func GetBasicScrapingEvents() []string {
 	res, err := http.Get(BASIC_SCRAPE_URL)
